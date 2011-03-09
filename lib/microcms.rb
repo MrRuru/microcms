@@ -1,0 +1,2 @@
+module Microcms
+end
