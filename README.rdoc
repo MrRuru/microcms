@@ -1,3 +1,12 @@
 = Microcms
 
+Still TODO
+* Test
+* Configurations
+  * Paperclip
+  * Backend authentication
+* Installation script
+  * Migrations
+  * Public content
+
 This project rocks and uses MIT-LICENSE.
