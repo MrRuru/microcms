@@ -1,0 +1,20 @@
+<% content_for :title, "global content" %>
+
+<h1>CMS Admin : Global content</h1>
+
+
+<%= content_for :content_list do %>
+  <h2>Contents</h2>
+  <% @contents.each do |content| %>
+    <div class="content" type="<%= content.class_name %>">
+      <%= render :partial => "cms_admin/cms_contents/content_wrapper", :locals => { :content => content } %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= content_for :content_edition do %>
+  <%= render 'cms_admin/cms_contents/new_content_select' %>
+  <% @new_contents.each do |content| %>
+    <%= render :partial => 'cms_admin/cms_contents/create_form', :locals => {:content => content}%>
+  <% end %>
+<% end %>

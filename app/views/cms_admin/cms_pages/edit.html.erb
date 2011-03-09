@@ -1,0 +1,40 @@
+<% content_for :title, "#{@page} page" %>
+
+<h1>Page : <%= @page.url.nil? || @page.url.empty? ? @page : (link_to @page, @page.url) %></h1>
+
+<h2>Edit</h2>
+<div id="edit_cms_page">
+  <%= form_for @page, :url =>cms_admin_cms_page_path(@page), :method => :put do |f| %>
+    <p>
+      Name :
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      Parent page:
+      <%= f.collection_select :parent_page_id, @pages, :id, :name, {:include_blank => 'None'} %>
+    </p>
+    <p>
+      Url:
+      <%= f.text_field :url %>
+    </p>
+    <p>
+      Layout:
+      <%= f.text_field :layout %>
+    </p>
+    <%= f.submit "Edit" %>
+  <% end %>
+</end>
+
+<%= content_for :content_list do %>
+  <h2>Contents</h2>
+  <% @contents.each do |content| %>
+    <%= render :partial => "cms_admin/cms_contents/content_wrapper", :locals => { :content => content, :page_id => @page.id } %>
+  <% end %> 
+<% end %>
+
+<%= content_for :content_edition do %>
+  <%= render 'cms_admin/cms_contents/new_content_select' %>
+  <% @new_contents.each do |content| %>
+    <%= render :partial => 'cms_admin/cms_contents/create_form', :locals => {:content => content, :page_id => @page.id}%>
+  <% end %>
+<% end %>

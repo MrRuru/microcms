@@ -1,2 +1,4 @@
-module Microcms
-end
+require "microcms/engine"
+
+# module Microcms
+# end

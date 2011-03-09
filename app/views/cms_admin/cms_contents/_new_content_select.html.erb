@@ -1,0 +1,6 @@
+<select id="new_content_select">
+  <option>Select a content type</option>
+  <% CmsContent.subclasses.each do |content_type| %>
+    <option id="new_<%=content_type.class_name %>"><%= content_type.to_text%></option>
+  <% end %>
+</select>
