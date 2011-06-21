@@ -8,5 +8,7 @@ Still TODO
 * Installation script
   * Migrations
   * Public content
+* Readme
+
 
 This project rocks and uses MIT-LICENSE.

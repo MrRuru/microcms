@@ -1,0 +1,9 @@
+<div class="cms_content_fields hidden" content_id="<%= cms_content.id %>" form_url="<%= cms_admin_cms_contents_path(:id => cms_content.id) %>">
+  <div class="content_name"><%= cms_content.name %></div>
+
+  <% I18n.available_locales.each do |locale| %>
+    <div class="content_translation" locale="<%= locale %>">
+      <%= cms_content.contents[locale] %>
+    </div>
+  <% end %>
+</div>

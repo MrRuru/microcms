@@ -19,7 +19,7 @@ class CmsPage < ActiveRecord::Base
 
   # Recursive method to get all the content of a page. Can surely be optimized
   # Can also be better written ([list of contents].to_content_hash)
-  def to_content(existing_contents = {})
+  def to_content(existing_contents = {})    
     # Get the content for this page
     add_contents_to!(cms_contents, existing_contents)
     
@@ -40,10 +40,6 @@ class CmsPage < ActiveRecord::Base
     name
   end
   
-  def url
-    "/" + super.downcase
-  end
-
   private 
   
   def add_contents_to!(source, dest)

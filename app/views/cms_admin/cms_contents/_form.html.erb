@@ -1,0 +1,32 @@
+<% page_id ||= nil %>
+<% create_form_url = page_id ? cms_admin_cms_page_cms_contents_path(:cms_page_id => page_id) : cms_admin_cms_contents_path %>
+
+<a href="#" id="new_content" form_url = "<%= create_form_url %>">New content</a>
+
+<div class="content_form">
+  <h2 class="new_content">New content for this page</h2>
+  <h2 class="edit_content">Edit <span class="content"></span> content for this page</h2>
+
+  <%= form_for cms_content, :url => create_form_url, :html => {:id => "content_edition_form"} do |f| %>
+
+    <div id="cms_content_name">
+      Name : 
+      <%= f.text_field :name, :id => "content_name" %>
+    </div>
+
+    <% I18n.available_locales.each do |locale| %>
+      <a href="#" class="show_locale" locale="<%= locale %>"><%= locale %></a>
+    <% end %>
+
+    <% I18n.available_locales.each do |locale| %>
+      <div class="locale_block" locale="<%= locale %>">
+        <%= text_area_tag "cms_content[contents][#{locale}]", cms_content.contents[locale], :class => "editor" %>
+      </div>
+    <% end %>
+            
+    <%= f.submit "Create", :class => "new_content" %>
+    <%= f.submit "Update", :class => "edit_content" %>
+
+  <% end%>
+</div>
+

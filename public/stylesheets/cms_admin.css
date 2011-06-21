@@ -117,3 +117,15 @@ a {
 .hidden{
   display:none;
 }
+
+.locale_block{
+  display:none;
+}
+
+a.active{
+  font-weight: bold;
+}
+
+.edit_content{
+  display:none;
+}

@@ -1,9 +1,0 @@
-<% page_id ||= nil %>
-<div class="content <%= 'other_page' if page_id != content.page_id %>">
-  <strong><%= content.name %></strong>
-  <%= render :partial => "cms_admin/cms_contents/#{content.class_name}/display", :locals => { :content => content, :page_id => page_id }%>
-  <%= link_to "Edit", "#", :class => "edit_content" %>
-  <%= link_to "X", cms_admin_cms_content_path(content), :method => :delete, :confirm => "Are you sure you want to delete this content" %>
-
-  <%= render :partial => 'cms_admin/cms_contents/update_form', :locals => {:content => content} %>
-</div>

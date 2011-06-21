@@ -7,9 +7,6 @@ gem "sqlite3"
 # Jquery
 gem "jquery-rails"
 
-# Markdown
-gem "rdiscount", :require => 'rdiscount'
-
 # Images
 gem "paperclip"
 

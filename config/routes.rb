@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :cms_pages do
       resources :cms_contents, :only => [:create]
     end
-    resources :cms_contents
+    resources :cms_contents, :only => [:create, :destroy]
   end
 
   # Generic match

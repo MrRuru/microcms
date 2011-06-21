@@ -1,0 +1,13 @@
+<% page_id ||= nil %>
+<div class="content <%= 'other_page' if page_id != cms_content.page_id %>">
+  <strong><%= cms_content.name %></strong>
+  
+  <% cms_content.contents.each_pair do |locale, translation| %>
+    <p>[<%=locale%>] <%= translation %></p>
+  <% end %>
+  
+  <%= link_to "Edit", "#", :class => "edit_content_link", :content_id => cms_content.id %>
+  <%= link_to "X", cms_admin_cms_content_path(cms_content), :method => :delete, :confirm => "Are you sure you want to delete this content" %>
+
+  <%= render :partial => 'cms_admin/cms_contents/fields', :locals => {:cms_content => cms_content} %>
+</div>

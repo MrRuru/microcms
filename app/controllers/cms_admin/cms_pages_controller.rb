@@ -19,7 +19,7 @@ class CmsAdmin::CmsPagesController < CmsAdmin::CmsAdminController
       redirect_to edit_cms_admin_cms_page_url(@page)
     else
       flash[:error] = "Page couldn\'t be created:\n#{@page.errors.full_messages.join('\n')}"
-      redirect_to request.referer || cms_admin_cms_pages_url
+      redirect_to request.referer || cms_admin_cms_pages_url
     end
   end
 
@@ -47,6 +47,6 @@ class CmsAdmin::CmsPagesController < CmsAdmin::CmsAdminController
   def load_page
     @pages = CmsPage.all
     @new_page = CmsPage.new
-    @new_contents = CmsContent.one_of_each    
+    @new_content = CmsContent.new
   end
 end

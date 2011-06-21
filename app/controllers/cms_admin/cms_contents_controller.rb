@@ -1,33 +1,26 @@
 class CmsAdmin::CmsContentsController < CmsAdmin::CmsAdminController
 
-
+  # Only action for create and update
   def create
-    @content = params[:type].constantize.new(params[:content])
-    @content.page_id = params[:cms_page_id]
-    if @content.save
-      flash[:notice] = "Content created."
-    else
-      flash[:error] = "The content couldn't be created:\n#{@content.errors.full_messages.join('\n')}"
-    end
-    redirect_to request.referer || cms_admin_cms_pages_path
-  end 
-  
-
-  def update
     @content = CmsContent.find params[:id]
-    if @content.update_attributes(params[@content.class.name.underscore.to_sym])
-      flash[:notice] = "Content successfully updated"
+    @content ||= CmsContent.new(:page_id => params[:cms_page_id])
+  
+    @content.attributes = params[:cms_content]
+    @content.contents = params[:cms_content][:contents]
+    
+    if @content.save
+      flash[:notice] = "Content successfully saved."
     else
-      flash[:error] = "Content couldn\'t be updated:\n#{@page.errors.full_messages.join('\n')}"
+      flash[:error] = "The content couldn't be saved:\n#{@content.errors.full_messages.join('\n')}"
     end
-    redirect_to request.referer || cms_admin_cms_pages_path
-  end  
+    redirect_to request.referer || cms_admin_cms_pages_path
+  end
   
   def destroy
     @content = CmsContent.find params[:id]
     unless @content.destroy
       flash[:error] = "The content couldn't be deleted."
     end
-    redirect_to request.referer || cms_admin_cms_pages_path
+    redirect_to request.referer || cms_admin_cms_pages_path
   end  
 end
