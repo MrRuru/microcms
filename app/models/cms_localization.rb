@@ -1,14 +1,14 @@
 class CmsLocalization < ActiveRecord::Base
 
   # Attributes
-  attr_accessible :content, :locale
+  attr_accessible :content, :language
   
   # Relations
   belongs_to :cms_content
   
   # Validations
-  validates_uniqueness_of :locale, :uniqueness => true, :scope => :cms_content_id
-  validates_presence_of :locale, :presence => true
+  validates_uniqueness_of :language, :scope => :cms_content_id
+  validates_presence_of :language
   
   # Scopes and queries
   scope :global, where(:page_id => nil)

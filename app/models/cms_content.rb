@@ -23,13 +23,13 @@ class CmsContent < ActiveRecord::Base
   # Get/set the contents seamlessly in the linked database
   def contents=(contents_hash)
     # Create/set the cms_localizations
-    contents_hash.each_pair do |locale, content|
-      existing_localization = cms_localizations.find_by_locale(locale)
+    contents_hash.each_pair do |language, content|
+      existing_localization = CmsLocalization.find_by_cms_content_id_and_language(self.id, language)
       if existing_localization
         existing_localization.content = content
-        existing_localization.save
+        throw "Error updating localization :#{existing_localization.errors}" unless existing_localization.save
       else
-        cms_localizations.build(:locale => locale, :content => content)
+        cms_localizations.build(:language => language, :content => content)
       end 
     end    
   end
@@ -39,14 +39,14 @@ class CmsContent < ActiveRecord::Base
     
     # Get the cms_localizations
     cms_localizations.each do |localization|
-      content_hash[localization.locale.to_sym] = localization.content
+      content_hash[localization.language.to_sym] = localization.content
     end
     
     return content_hash
   end
   
-  def localization(locale)
-    cms_localizations.find_by_locale(locale).content
+  def localization(language)
+    cms_localizations.find_by_language(language).content
   end
   
     

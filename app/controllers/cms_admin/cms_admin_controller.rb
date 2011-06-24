@@ -6,7 +6,7 @@ class CmsAdmin::CmsAdminController < ApplicationController
   
   def cms_check_authentication
     authenticate_or_request_with_http_basic do |username, password|
-      username == "foo" && password == "bar"
+      username == Microcms.config.username && password == Microcms.config.password
     end
   end
 end

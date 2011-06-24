@@ -1,4 +1,4 @@
 require "microcms/engine"
 
-# module Microcms
-# end
+module Microcms
+end
