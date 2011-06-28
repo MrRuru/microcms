@@ -24,7 +24,7 @@ module Microcms
       if @cms_page_content.has_key?(name.to_sym)
         raw @cms_page_content[name.to_sym].localization(locale)
       else
-        "Content not found for #{key}"
+        "Content not found for #{name}"
       end
     end
   
