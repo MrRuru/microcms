@@ -3,7 +3,7 @@
   <strong><%= cms_content.name %></strong>
   
   <% cms_content.contents.each_pair do |locale, translation| %>
-    <p>[<%=locale%>] <%= translation %></p>
+    <p>[<%=locale%>] <%= truncate (strip_tags translation) %></p>
   <% end %>
   
   <%= link_to "Edit", "#", :class => "edit_content_link", :content_id => cms_content.id %>

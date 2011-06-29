@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   # CMS administration
+  match 'cms_admin' => 'cms_admin/cms_pages#index'
+
   namespace 'cms_admin' do
     resources :cms_pages do
       resources :cms_contents, :only => [:create]

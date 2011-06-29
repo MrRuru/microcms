@@ -3,11 +3,13 @@ class CmsAdmin::CmsContentsController < CmsAdmin::CmsAdminController
   # Only action for create and update
   def create
     @content = CmsContent.find params[:id] if params[:id]
-    @content ||= CmsContent.new(:page_id => params[:cms_page_id])
-  
-    @content.attributes = params[:cms_content]
-    @content.contents = params[:cms_content][:contents]    
     
+    if @content
+      @content.attributes = params[:cms_content]
+    else
+      @content = CmsContent.new(params[:cms_content].merge(:page_id => params[:cms_page_id]))
+    end
+      
     if @content.save
       flash[:notice] = "Content successfully saved."
     else
