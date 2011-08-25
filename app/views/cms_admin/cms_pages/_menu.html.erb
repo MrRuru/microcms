@@ -1,17 +1,25 @@
-<%= form_for [:cms_admin, @new_page] do |f| %>
-  <p>
-    <%= f.text_field :name, :placeholder => "Name" %>
+<ul class="tabs">
+  <li><%= link_to "Global content", cms_admin_cms_pages_path, :class => ("active" unless @page) %></li>
+  <% @pages.each do |page| %>
+    <li>
+      <%= link_to page, edit_cms_admin_cms_page_url(page), :class => ("active" if @page && @page == page) %>
+    </li>
+  <% end %>  
+  <li style="float:right">
+    <a href="#" id="new_page">New</a>
+  </li>
+</ul>
 
-    <%= f.collection_select :parent_page_id, @pages, :id, :name, {:include_blank => 'Parent'} %>
-    <%= f.submit "New" %>
-  </p>
-<% end %>
+<div id="new_page_form" class="hidden">
+  <h3 class="left">New page</h3>
+  <%= form_for [:cms_admin, @new_page] do |f| %>
+    <p>
+      <%= f.text_field :name, :placeholder => "Name" %>
 
-<p><%= link_to "Global content", cms_admin_cms_pages_path %>
-<% @pages.each do |page| %>
-  <p>
-    <%= link_to page, edit_cms_admin_cms_page_url(page) %>
-    <%= link_to "X", cms_admin_cms_page_path(page), :method => :delete, :confirm => "Are you sure you want to delete this page?" %>
-  </p>
-<% end %>
+      <%= f.collection_select :parent_page_id, @pages, :id, :name, {:include_blank => 'Parent'} %>
+      <%= f.submit "New" %>
+    </p>
+  <% end %>
+	<hr/>
+</div>
 

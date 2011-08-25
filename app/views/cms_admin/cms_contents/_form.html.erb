@@ -1,11 +1,11 @@
 <% page_id ||= nil %>
 <% create_form_url = page_id ? cms_admin_cms_page_cms_contents_path(:cms_page_id => page_id) : cms_admin_cms_contents_path %>
 
-<a href="#" id="new_content" form_url = "<%= create_form_url %>">New content</a>
+<a href="#" id="new_content" class="button" form_url = "<%= create_form_url %>">New content</a>
 
 <div class="content_form">
-  <h2 class="new_content">New content for this page</h2>
-  <h2 class="edit_content">Edit <span class="content"></span> content for this page</h2>
+  <!-- <h3 class="new_content">New content for this page</h3>
+  <h3 class="edit_content">Edit <span class="content"></span> content for this page</h3> -->
 
   <%= form_for cms_content, :url => create_form_url, :html => {:id => "content_edition_form"} do |f| %>
 
@@ -24,8 +24,8 @@
       </div>
     <% end %>
             
-    <%= f.submit "Create", :class => "new_content" %>
-    <%= f.submit "Update", :class => "edit_content" %>
+    <span class="new_content"><%= f.submit "Create" %></span>
+    <span class="edit_content"><%= f.submit "Update" %></span>
 
   <% end%>
 </div>

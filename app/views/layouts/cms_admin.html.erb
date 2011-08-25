@@ -1,35 +1,78 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>uCMS | <%= yield(:title) %></title>
-    <%= stylesheet_link_tag "cms_admin" %>
-    <%= javascript_include_tag "jquery.js", "ckeditor/ckeditor.js", "ckeditor/adapters/jquery.js", "jquery_ujs", "cms_admin" %>
-    <%= yield(:head) %>
-    <%= csrf_meta_tag %> 
-  </head>
-  <body>
-    <div id="container">
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
 
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>uCMS | <%= yield(:title) %></title>
+  <!-- <meta name="description" content=""> -->
+  <!-- <meta name="author" content=""> -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+  <%= stylesheet_link_tag "cms_admin/base" %>
+  <%= stylesheet_link_tag "cms_admin/skeleton" %>
+  <%= stylesheet_link_tag  "cms_admin/layout" %>
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/cms_admin/favicon.ico">
+	<link rel="apple-touch-icon" href="images/cms_admin/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/cms_admin/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/cms_admin/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<div class="sixteen columns">
+			<h1 class="remove-bottom" style="margin-top: 40px">uCMS</h1>
+      <hr/>
       <div id="menu">
         <%= render :partial => "cms_admin/cms_pages/menu" %>
       </div>
-
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
-
       <%= yield %>
+		</div>
 
-      <div id="content_edition">
-        <%= yield :content_edition %>
+    <div class="row">
+  		<div class="five columns alpha" id="content_list">
+          <%= yield :content_list %>        
       </div>
-      
-      <div id="content_list">
-        <%= yield :content_list %>        
-      </div>
-      
-      <br class="clear"/>
-    </div>
-  </body>
-</html>
+
+  		<div class="eleven columns omega" id="content_edition">
+          <%= yield :content_edition %>
+  		</div>
+  	</div>
+
+	</div><!-- container -->
+
+
+	<!-- JS
+	================================================== -->
+	<%= javascript_include_tag  "cms_admin/jquery.min.js", "ckeditor/ckeditor.js", "ckeditor/adapters/jquery.js", "cms_admin/cms_admin.js" %>
+
+<!-- End Document
+================================================== -->
+</body>
+</html>%        

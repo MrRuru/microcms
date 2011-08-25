@@ -1,10 +1,7 @@
 <% content_for :title, "global content" %>
 
-<h1>CMS Admin : Global content</h1>
-
-
 <%= content_for :content_list do %>
-  <h2>Contents</h2>
+  <h3>Contents</h3>
   <% @contents.each do |content| %>
     <%= render content %>
   <% end %>

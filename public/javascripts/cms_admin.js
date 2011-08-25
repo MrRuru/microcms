@@ -62,4 +62,17 @@ $(document).ready(function(){
     return false;
   });
 
+  $('a#new_page').click(function(){
+    if( $('#new_page_form').is(':visible') ) {
+      $('#new_page_form').hide();
+      $('a#new_page').removeClass('active');      
+    }
+    else{
+      $('#new_page_form').show();
+      $('a#new_page').addClass('active');
+    }
+    
+    return false;
+  });
+  
 });

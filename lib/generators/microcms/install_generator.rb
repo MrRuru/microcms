@@ -18,8 +18,16 @@ module Microcms
       def copy_assets
         puts "Copying ckeditor files to public/javascripts/ckeditor"
         FileUtils.cp_r File.expand_path("../../../../public/javascripts/ckeditor/", __FILE__), "public/javascripts/"
-        copy_file "../../../public/javascripts/cms_admin.js", "public/javascripts/cms_admin.js"
-        copy_file "../../../public/stylesheets/cms_admin.css", "public/stylesheets/cms_admin.css"
+
+        puts "Copying css files to public/stylesheets/cms_admin"
+        ["cms_admin", "base", "layout", "skeleton"].each do |css_file|
+          copy_file "../../../public/stylesheets/#{css_file}.css", "public/stylesheets/cms_admin/#{css_file}.css"
+        end
+
+        puts "Copying js files to public/javascripts/cms_admin"
+        ["cms_admin", "jquery.min", "rails", "tabs"].each do |js_file|
+          copy_file "../../../public/javascripts/#{js_file}.js", "public/javascripts/cms_admin/#{js_file}.js"
+        end        
       end
 
       def copy_migrations
