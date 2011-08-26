@@ -63,6 +63,10 @@ a#new_page{
   border-right: 1px solid #ddd;
 }
 
+a.show_locale.active{
+  font-weight: bold;
+}
+
 /* #Page Styles
 ================================================== */
 

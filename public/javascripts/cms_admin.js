@@ -29,8 +29,8 @@ $(document).ready(function(){
     
   
   $('a.edit_content_link').click(function(){
-    $('.new_content').hide();
     $('.edit_content').show();
+    $('.new_content').hide();
     update_fields_values($(this).attr('content_id'));
   });
   
