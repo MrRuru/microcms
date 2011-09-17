@@ -27,12 +27,15 @@ module Microcms
         puts "Copying js files to public/javascripts/cms_admin"
         ["cms_admin", "jquery.min", "rails", "tabs"].each do |js_file|
           copy_file "../../../public/javascripts/#{js_file}.js", "public/javascripts/cms_admin/#{js_file}.js"
-        end        
+        end
+        
+        puts "Copying configuration initializers to config/initializers"
+        copy_file "config/initializer.rb", "config/initializers/microcms.rb"
       end
 
       def copy_migrations
         ["create_cms_pages", "create_cms_contents", "create_cms_files", "create_cms_localizations"].each do |migration_file|
-          migration_template "#{migration_file}.rb", "db/migrate/#{migration_file}.rb"
+          migration_template "migrations/#{migration_file}.rb", "db/migrate/#{migration_file}.rb"
         end
       end
 
