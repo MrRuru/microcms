@@ -30,7 +30,7 @@ module Microcms
         end        
         
         puts "Copying configuration initializers to config/initializers"
-        copy_file "config/initializer.rb" "config/initializers/microcms.rb"
+        copy_file "config/initializer.rb", "config/initializers/microcms.rb"
       end
 
       def copy_migrations
