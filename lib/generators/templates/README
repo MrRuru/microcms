@@ -1,4 +1,4 @@
 **************************************
 MicroCMS
 
-Only works with jquery and jquery UI. You have to include it in your application.
+Don't forget to set your username and password in config/initializers/microcms.rb
